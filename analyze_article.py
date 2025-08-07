@@ -150,7 +150,7 @@ def get_all_chat_ids(filepath="chat_ids.txt"):
 
 # 7. 格式化推送消息
 def format_message(title, link, time, companies):
-    msg = f"📢 猫笔刀新文章\n\n标题：{title}\n" #时间：{time}\n链接：{link}\n"
+    msg = f"📢 猫笔刀新文章\n\n标题：{title}\n链接：{link}\n"
     if companies:
         msg += "\n文章涉及公司：\n"
         for comp in companies:
