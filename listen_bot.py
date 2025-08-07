@@ -1,3 +1,4 @@
+import asyncio
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 import os
 from dotenv import load_dotenv
@@ -39,11 +40,18 @@ async def echo(update, context):
     save_chat_id(chat_id)
     await update.message.reply_text("你好，每日早上将为你推送消息！")
 
+async def set_my_commands(app):
+    await app.bot.set_my_commands([
+        ("start", "订阅推送/获取 chat_id"),
+        ("unsubscribe", "取消订阅"),
+    ])
+
 def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("unsubscribe", unsubscribe))  # 新增
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
+    asyncio.run(set_my_commands(app))
     app.run_polling()
 
 if __name__ == '__main__':
