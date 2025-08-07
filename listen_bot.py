@@ -42,7 +42,7 @@ async def echo(update, context):
 
 async def set_my_commands(app):
     await app.bot.set_my_commands([
-        ("start", "订阅推送/获取 chat_id"),
+        ("start", "订阅推送"),
         ("unsubscribe", "取消订阅"),
     ])
 
